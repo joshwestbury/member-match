@@ -1,27 +1,7 @@
 import React from 'react';
 import { Grid, Paper, TextField } from '@material-ui/core';
+import styles from './main-css/Note-Data.css';
 
-
-const styles = {
-  Container: {
-    display: 'flex'
-  },
-  Paper: {
-    height: 1300,
-    padding: 80,
-    marginTop: 10,
-    marginLeft: 10,
-    marginBottom: 10,
-    marginRight: 10,
-  },
-  TextField: {
-    width: 300,
-    marginTop: 85,
-    marginLeft:  150,
-    marginBottom: 10,
-    marginRight: 150
-  }
-}
 
 const NoteData = props => {
   const member = props.data[0]["Contact Name"];

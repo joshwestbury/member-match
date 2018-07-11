@@ -1,41 +1,7 @@
 import React from 'react';
 import { Grid, Paper, Typography } from '@material-ui/core';
-import { List, ListItem, ListItemText, Checkbox, Button } from '@material-ui/core';
-
-
-const styles = {
-  Paper: {
-    height: 1300,
-    padding: 60,
-    marginTop: 10,
-    marginLeft: 10,
-    marginBottom: 10,
-    marginRight: 10,
-    textAlign: 'center',
-  },
-  List: {
-    width: 300,
-    marginTop: 85,
-    marginLeft: 10,
-    marginBottom: 10,
-    marginRight: 150
-  },
-  SaveButton: {
-    padding: 10,
-    paddingLeft:  50,
-    paddingRight: 50,
-    margin: 20,
-    backgroundColor: '#E91E63',
-    size: 'medium'
-  },
-  IdkButton: {
-    padding: 10,
-    paddingLeft: 30,
-    paddingRight: 30,
-    margin: 20,
-    backgroundColor: '#2196F3'
-  }
-}
+import { List, ListItem, ListItemText, Checkbox, Button, CardActions, CardContent, Card } from '@material-ui/core';
+import styles from './main-css/Results.css';
 
 const Results = props => {
   return (
@@ -49,26 +15,91 @@ const Results = props => {
             the customer on the left
           </Typography>
           <Grid item lg>
-            <List style={styles.List}>
-              {[0, 1, 2, 3].map(value => (
-                <ListItem
-                  key={value}
-                  role={undefined}
-                  dense
-                  button
-                  //onClick={this.handleToggle(value)}
-                  //className={classes.listItem}
-                >
-                  <Checkbox
+          <div>
+            <Card elevation={7} style={styles.Card}>
+              <CardContent>
+                <List>
+                  <ListItem>
+                    <ListItemText primary={"Name:"} />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText primary={"Address:"} />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText primary={"Partner Name:"} />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText primary={"Recipients:"} />
+                  </ListItem>
+                </List>
+              </CardContent>
+              <CardActions style={styles.CheckBox}>
+                <Checkbox
                     //checked={this.state.checked.indexOf(value) !== -1}
-                    tabIndex={-1}
-                    disableRipple
+                  tabIndex={-1}
+                  disableRipple
                   />
-                  <ListItemText primary={`Results Line ${value + 1}`} />
-                </ListItem>
-              ))}
-            </List>
-          </Grid>
+              </CardActions>
+            </Card>
+          </div>
+
+          <div>
+              <Card elevation={7} style={styles.Card}>
+              <CardContent>
+                <List>
+                  <ListItem>
+                    <ListItemText primary={"Name:"} />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText primary={"Address:"} />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText primary={"Partner Name:"} />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText primary={"Recipients:"} />
+                  </ListItem>
+                </List>
+              </CardContent>
+              <CardActions>
+                <Checkbox
+                  //checked={this.state.checked.indexOf(value) !== -1}
+                  tabIndex={-1}
+                  disableRipple
+                />
+              </CardActions>
+            </Card>
+          </div>
+
+          <div>
+              <Card elevation={7} style={styles.Card}>
+              <CardContent>
+                <List>
+                  <ListItem>
+                    <ListItemText primary={"Name:"} />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText primary={"Address:"} />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText primary={"Partner Name:"} />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText primary={"Recipients:"} />
+                  </ListItem>
+                </List>
+              </CardContent>
+              <CardActions>
+                <Checkbox
+                  //checked={this.state.checked.indexOf(value) !== -1}
+                  tabIndex={-1}
+                  disableRipple
+                />
+              </CardActions>
+            </Card>
+          </div>
+
+        </Grid>
           <Grid item lg>
             <Button style={styles.SaveButton} variant="contained" color="primary">
               Save

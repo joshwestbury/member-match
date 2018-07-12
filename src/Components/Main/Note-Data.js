@@ -3,10 +3,10 @@ import { Grid, Paper, TextField, Card, CardContent } from '@material-ui/core';
 import styles from './main-css/Note-Data.css';
 
 
-const NoteData = props => {
-  const member = props.data[0]["Contact Name"];
-  const rep = props.data[0]["User who left the Note"];
-  const note = props.data[0]["Note Content"]
+const NoteData = ({data}) => {
+  const member = data["Contact Name"];
+  const rep = data["User who left the Note"];
+  const note = data["Note Content"]
   return (
     <Grid container={styles.Container}>
       <Grid item lg>
@@ -17,23 +17,23 @@ const NoteData = props => {
                 <TextField id="name"
                   label="Customer Name / Business"
                   style={styles.TextField}
-                  value={member}
+                  value={`${member}`}
                   // onChange={this.handleChange('name')}
                   margin="normal"
                 />
-                <TextField
+                {/* <TextField
                   id="name"
                   label="Customer Address"
                   style={styles.TextField}
                   value={'Address Line'}
                   // onChange={this.handleChange('name')}
                   margin="normal"
-                />
+                /> */}
                 <TextField
                   id="name"
                   label="Partner Name"
                   style={styles.TextField}
-                  value={rep}
+                  value={`${rep}`}
                   // onChange={}
                   margin="normal"
                 />
@@ -43,7 +43,7 @@ const NoteData = props => {
                   multiline
                   rowsMax="50"
                   style={styles.TextField}
-                  value={note}
+                  value={`${note}`}
                   //onChange={}
                   margin="normal"
                 />

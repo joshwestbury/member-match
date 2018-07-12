@@ -16,5 +16,9 @@ export default {
         marginLeft:  150,
         marginBottom: 10,
         marginRight: 150
-      }
+      },
+      Card: {
+        display: 'block',
+        paddingBottom: 40
+    }
 }

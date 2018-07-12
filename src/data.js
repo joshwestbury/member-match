@@ -18,7 +18,7 @@
 
 export const data = [
   {
-    "Note Content": "Added daughter Erin is a school teacher starting next year . Wesley is trying to retire by selling business. Concerned Christian",
+    "Note Content": "Added daughter Erin is a school teacher starting next year . Wesley is trying to retire by selling business. Concerned Christian.",
     "Note created at": "12/17/14 20:00",
     "User ID": "599936",
     "User who left the Note": "Rob Pitkin",

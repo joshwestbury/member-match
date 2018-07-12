@@ -6,12 +6,23 @@ import Results from './Main/Results';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { data } from '../data.js';
 import { Grid } from '@material-ui/core';
+import * as firebase from 'firebase';
+import { config } from '../firebase';
+
+firebase.initializeApp(config);
+
+const database = firebase.database();
 
 class App extends Component {
-  state = {data}
-
+  constructor() {
+    super();
+    this.state = {
+      data: {data}
+    }
+  }
+  
   getCurrentData() {
-    return this.state.data
+    return database.ref('data');
   }
 
   render() {
@@ -25,7 +36,7 @@ class App extends Component {
         <Grid item sm>
 
           <NoteData
-            data={this.state.data}
+            data={data}
           />
 
         </Grid>

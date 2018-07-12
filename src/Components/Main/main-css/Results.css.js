@@ -34,9 +34,6 @@ export default {
     Card: {
         marginTop: 20
     },
-    List: {
-        marginBottom: 1
-    },
     CheckBox: {
         marginTop: 1
     }

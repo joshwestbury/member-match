@@ -1,7 +1,8 @@
 export default {
 
     Paper: {
-        height: 1300,
+        display: 'block',
+        height: 1200,
         padding: 60,
         marginTop: 10,
         marginLeft: 10,
@@ -20,7 +21,7 @@ export default {
         padding: 10,
         paddingLeft:  50,
         paddingRight: 50,
-        margin: 20,
+        margin: 50,
         backgroundColor: '#E91E63',
         size: 'medium'
     },
@@ -28,7 +29,7 @@ export default {
         padding: 10,
         paddingLeft: 30,
         paddingRight: 30,
-        margin: 20,
+        margin: 50,
         backgroundColor: '#2196F3'
     },
     Card: {

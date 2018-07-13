@@ -21,14 +21,14 @@ const NoteData = ({data}) => {
                   // onChange={this.handleChange('name')}
                   margin="normal"
                 />
-                {/* <TextField
+                <TextField
                   id="name"
                   label="Customer Address"
                   style={styles.TextField}
-                  value={'Address Line'}
+                  value={''}
                   // onChange={this.handleChange('name')}
                   margin="normal"
-                /> */}
+                />
                 <TextField
                   id="name"
                   label="Partner Name"

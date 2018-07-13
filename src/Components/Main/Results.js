@@ -3,7 +3,7 @@ import { Grid, Paper, Typography } from '@material-ui/core';
 import { List, ListItem, ListItemText, Checkbox, Button, CardActions, CardContent, Card } from '@material-ui/core';
 import styles from './main-css/Results.css';
 
-const Results = props => {
+const Results = ({updateId, notSure}) => {
   return (
     <Grid container>
       <Grid item lg>
@@ -24,6 +24,9 @@ const Results = props => {
                   </ListItem>
                   <ListItem>
                     <ListItemText primary={"Address:"} />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText primary={"Company Name:"} />
                   </ListItem>
                   <ListItem>
                     <ListItemText primary={"Partner Name:"} />
@@ -54,32 +57,7 @@ const Results = props => {
                     <ListItemText primary={"Address:"} />
                   </ListItem>
                   <ListItem>
-                    <ListItemText primary={"Partner Name:"} />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemText primary={"Recipients:"} />
-                  </ListItem>
-                </List>
-              </CardContent>
-              <CardActions>
-                <Checkbox
-                  //checked={this.state.checked.indexOf(value) !== -1}
-                  tabIndex={-1}
-                  disableRipple
-                />
-              </CardActions>
-            </Card>
-          </div>
-
-          <div>
-              <Card elevation={7} style={styles.Card}>
-              <CardContent>
-                <List>
-                  <ListItem>
-                    <ListItemText primary={"Name:"} />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemText primary={"Address:"} />
+                    <ListItemText primary={"Company Name:"} />
                   </ListItem>
                   <ListItem>
                     <ListItemText primary={"Partner Name:"} />
@@ -101,10 +79,10 @@ const Results = props => {
 
         </Grid>
           <Grid item lg>
-            <Button style={styles.SaveButton} variant="contained" color="primary">
+            <Button style={styles.SaveButton} onClick={() => this.updateId()} variant="contained" color="primary">
               Save
             </Button>
-            <Button style={styles.IdkButton} variant="contained" color="primary">
+            <Button style={styles.IdkButton} onClick={() => this.notSure()} variant="contained" color="primary">
               I'm not sure
             </Button>
           </Grid>

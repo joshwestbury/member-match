@@ -10,7 +10,7 @@ import { config } from '../firebase';
 
 firebase.initializeApp(config);
 
-const database = firebase.database();
+const db = firebase.database();
 
 class App extends Component {
   
@@ -23,14 +23,21 @@ class App extends Component {
   }
   
   getCurrentData() {
-    const ref = database.ref().child('0');
+    const ref = db.ref();
+    //const query = ref.orderByChild('Contact Name');
+    const query = ref.orderByChild('InternalId').equalTo("none");
+    query.once('child_added', snap => {
+        console.log(snap.val())
+        this.setState({data: snap.val()});
+      })
+  }
 
-    ref.once('value', snapshot => {
-      this.setState({data: snapshot.val()});
-    },
-    errorObject => {
-      console.log('The read failed', errorObject.code)
-    })
+  updateId() {
+
+  }
+
+  notSure() {
+
   }
 
   render() {
@@ -49,7 +56,10 @@ class App extends Component {
         </Grid>
         <Grid item sm>
 
-          <Results/>
+          <Results
+            updateId={this.updateId}
+            notSure={this.notSure}
+          />
 
         </Grid>
       </Grid>

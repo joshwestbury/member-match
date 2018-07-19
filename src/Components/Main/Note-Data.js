@@ -5,9 +5,16 @@ import styles from './main-css/Note-Data.css';
 class NoteData extends Component {
   
   render() {
-    const member = this.props.data["Contact Name"];
-    const rep = this.props.data["User who left the Note"];
-    const note = this.props.data["Note Content"]
+
+    const member = this.props.data ? this.props.data["Contact Name"] : '';
+    const rep = this.props.data ? this.props.data["User who left the Note"] : '';
+    const note = this.props.data ? this.props.data["Note Content"] : '';
+    const city = this.props.data["Customer Address"] ? this.props.data["Customer Address"].city : '';
+    const street = this.props.data["Customer Address"] ? this.props.data["Customer Address"].line1 : '';
+    const state = this.props.data["Customer Address"] ? this.props.data["Customer Address"].state : '';
+    const zip = this.props.data["Customer Address"] ? this.props.data["Customer Address"].postal_code : '';
+    
+
     return (
       <Grid>
         <Grid item lg>
@@ -26,7 +33,7 @@ class NoteData extends Component {
                     id="name"
                     label="Customer Address"
                     style={styles.TextField}
-                    value={'Address'}
+                    value={`${street},  ${city},  ${state},  ${zip}`}
                     // onChange={this.handleChange('name')}
                     margin="normal"
                   />

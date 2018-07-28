@@ -1,22 +1,27 @@
 import React, { Component } from 'react';
 import { Grid, Paper, Typography } from '@material-ui/core';
-import { List, ListItem, ListItemText, Checkbox, Button, CardActions, CardContent, Card } from '@material-ui/core';
+import { List, Button } from '@material-ui/core';
 import styles from './main-css/Results.css';
+import resultItem from './List-Item';
+import * as _ from 'lodash';
 
 class Results extends Component {
 
   handleSave = () => {
-    this.props.notSure();
+    //this.props.updateId();
   }
 
   handleNotSure = () => {
-    this.props.updateId();
+    this.props.notSure();
   }
 
   render() {
+    //const results = this.props.results.concat(this.props.results).concat(this.props.results).concat(this.props.results).concat(this.props.results)
+  
+    console.log('results data: ', this.props.results)
     return (
-      <Grid>
-        <Grid item lg>
+      <Grid container>
+        <Grid item lg={12}>
           <Paper elevation={7} style={styles.Paper}>
             <Typography
               variant="display1"
@@ -24,71 +29,14 @@ class Results extends Component {
               Select the option that best matches
               the customer on the left
             </Typography>
-            <Grid item lg>
-            <div>
-              <Card elevation={7} style={styles.Card}>
-                <CardContent>
-                  <List>
-                    <ListItem>
-                      <ListItemText primary={"Name:"} />
-                    </ListItem>
-                    <ListItem>
-                      <ListItemText primary={"Address:"} />
-                    </ListItem>
-                    <ListItem>
-                      <ListItemText primary={"Company Name:"} />
-                    </ListItem>
-                    <ListItem>
-                      <ListItemText primary={"Partner Name:"} />
-                    </ListItem>
-                    <ListItem>
-                      <ListItemText primary={"Recipients:"} />
-                    </ListItem>
-                  </List>
-                </CardContent>
-                <CardActions style={styles.CheckBox}>
-                  <Checkbox
-                      //checked={this.state.checked.indexOf(value) !== -1}
-                    tabIndex={-1}
-                    disableRipple
-                    />
-                </CardActions>
-              </Card>
-            </div>
-  
-            <div>
-                <Card elevation={7} style={styles.Card}>
-                <CardContent>
-                  <List>
-                    <ListItem>
-                      <ListItemText primary={"Name:"} />
-                    </ListItem>
-                    <ListItem>
-                      <ListItemText primary={"Address:"} />
-                    </ListItem>
-                    <ListItem>
-                      <ListItemText primary={"Company Name:"} />
-                    </ListItem>
-                    <ListItem>
-                      <ListItemText primary={"Partner Name:"} />
-                    </ListItem>
-                    <ListItem>
-                      <ListItemText primary={"Recipients:"} />
-                    </ListItem>
-                  </List>
-                </CardContent>
-                <CardActions>
-                  <Checkbox
-                    //checked={this.state.checked.indexOf(value) !== -1}
-                    tabIndex={-1}
-                    disableRipple
-                  />
-                </CardActions>
-              </Card>
-            </div>
-  
-          </Grid>
-            <Grid item lg>
+            <List>
+              {
+                this.props.results.map((resultObj, index) => {
+                  return resultItem({resultObj})
+                })
+              }
+            </List>
+            <Grid item lg={12}>
               <Button onClick={this.handleSave} style={styles.SaveButton} variant="contained" color="primary">
                 Save
               </Button>
@@ -104,6 +52,5 @@ class Results extends Component {
 
   }
 }
-
 
 export default Results;

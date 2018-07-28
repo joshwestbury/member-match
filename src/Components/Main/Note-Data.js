@@ -1,23 +1,27 @@
 import React, { Component } from 'react';
 import { Grid, Paper, TextField, Card, CardContent } from '@material-ui/core';
 import styles from './main-css/Note-Data.css';
+import * as _ from 'lodash';
 
 class NoteData extends Component {
   
   render() {
-
-    const member = this.props.data ? this.props.data["Contact Name"] : '';
-    const rep = this.props.data ? this.props.data["User who left the Note"] : '';
-    const note = this.props.data ? this.props.data["Note Content"] : '';
-    const city = this.props.data["Customer Address"] ? this.props.data["Customer Address"].city : '';
-    const street = this.props.data["Customer Address"] ? this.props.data["Customer Address"].line1 : '';
-    const state = this.props.data["Customer Address"] ? this.props.data["Customer Address"].state : '';
-    const zip = this.props.data["Customer Address"] ? this.props.data["Customer Address"].postal_code : '';
+    
+    
+    const member = _.get(this.props.data, 'Contact Name', 'No Member Name');
+    const partnerName = _.get(this.props.data, 'User who left the Note', "No Partner Name");
+    const note = _.get(this.props.data, 'Note Content', 'No Note data');
+    const city = _.get(this.props.data, 'Customer Address.city', '')
+    const street = _.get(this.props.data, 'Customer Address.line1', '');
+    const state = _.get(this.props.data, 'Customer Address.state', '');
+    const zip = _.get(this.props.data, 'Customer Address.postal_code', '');
+   // const state = this.props.data["Customer Address"] ? this.props.data["Customer Address"].state : '';
+    //const zip = this.props.data["Customer Address"] ? this.props.data["Customer Address"].postal_code : '';
     
 
     return (
-      <Grid>
-        <Grid item lg>
+      <Grid container>
+        <Grid item lg={12}>
           <Paper elevation={7} style={styles.Paper}>
             <Card elevation={7} style={styles.Card}>
               <CardContent>
@@ -26,7 +30,6 @@ class NoteData extends Component {
                     label="Customer Name / Business"
                     style={styles.TextField}
                     value={`${member}`}
-                    // onChange={this.handleChange('name')}
                     margin="normal"
                   />
                   <TextField
@@ -41,7 +44,7 @@ class NoteData extends Component {
                     id="name"
                     label="Partner Name"
                     style={styles.TextField}
-                    value={`${rep}`}
+                    value={`${partnerName}`}
                     // onChange={}
                     margin="normal"
                   />

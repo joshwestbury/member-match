@@ -62,3 +62,12 @@ typings/
 
 #firebase
 src/firebase.js
+
+#sqlite
+netsuiteCustomers0.sqlite
+
+#headers
+headers.js
+
+#netsuite
+src/User_Id_to_NetSuite_ID_Map.js

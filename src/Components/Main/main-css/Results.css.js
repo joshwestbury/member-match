@@ -1,7 +1,6 @@
 export default {
 
     Paper: {
-        display: 'block',
         height: 1200,
         padding: 60,
         marginTop: 10,
@@ -11,11 +10,14 @@ export default {
         textAlign: 'center',
     },
     List: {
+        height: 1200,
         width: 300,
         marginTop: 85,
         marginLeft: 10,
         marginBottom: 10,
-        marginRight: 150
+        marginRight: 150,
+        overflow: 'auto',
+        position: 'relative'
     },
     SaveButton: {
         padding: 10,

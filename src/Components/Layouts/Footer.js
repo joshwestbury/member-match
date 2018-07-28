@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper, Tabs } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
 import Tab from '@material-ui/core/Tab';
 
 const Footer = props => {

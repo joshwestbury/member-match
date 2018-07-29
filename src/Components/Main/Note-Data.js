@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Paper, TextField, Card, CardContent } from '@material-ui/core';
-import styles from './main-css/Note-Data.css';
+import styles from './Main-css/Note-Data.css';
 import * as _ from 'lodash';
 
 class NoteData extends Component {
@@ -25,6 +25,8 @@ class NoteData extends Component {
                   <TextField id="name"
                     label="Customer Name / Business"
                     style={styles.TextField}
+                    multiline
+                    rowsMax="50"
                     value={`${member}`}
                     margin="normal"
                   />
@@ -32,6 +34,8 @@ class NoteData extends Component {
                     id="name"
                     label="Customer Address"
                     style={styles.TextField}
+                    multiline
+                    rowsMax="50"
                     value={`${street},  ${city},  ${state},  ${zip}`}
                     // onChange={this.handleChange('name')}
                     margin="normal"

@@ -26,7 +26,6 @@ class App extends Component {
     await this.updatePartnerId();
     await this.getFirebaseData();
     await this.getNetsuiteData();
-    console.log('this.state.results', this.state.results)
   }
   
   //get address from base and update parter with id
@@ -48,7 +47,6 @@ class App extends Component {
     const query = ref.orderByChild('InternalId').equalTo("none");//change to "None" for production
     query.once('child_added', async snap => {
       const partnerBaseId = await snap.val()['User ID'];
-      console.log('partnerBaseId', partnerBaseId);
       const partnerId = NetSuiteIdMap[partnerBaseId];
       if (partnerId !== undefined){
         snap.ref.update({"partnerId": partnerId});
@@ -69,7 +67,6 @@ class App extends Component {
   getNetsuiteData = async () => {
     const searchResults = await this.callNetsuite(this.state.data);
     await this.setState({results: searchResults});
-    console.log('search results: ', searchResults)
   }
 
   callBase = async (id) => {
@@ -79,7 +76,7 @@ class App extends Component {
   }  
 
   callNetsuite = async (state) => { 
-    console.log('state', state);
+    console.log('this.state.data', state);
     const response = await fetch(`/api/ns`,{
       method: 'POST',
       body: JSON.stringify(state),
@@ -97,13 +94,11 @@ class App extends Component {
 
   notSure = () => {
     //set notSure field to true in firebase
-    //console.log("Not Sure");
     const contact = this.state.data['Contact ID'];
     const ref = db.ref();
     const query = ref.orderByChild('Contact ID').equalTo(contact)
       query.once('child_added', snap => {
-        //console.log('contact', snap.val())
-      snap.ref.update({"notSure": true, "InternalId": false})
+        snap.ref.update({"notSure": true, "InternalId": false})
      })
     
   };

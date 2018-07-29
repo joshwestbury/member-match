@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Paper, Typography } from '@material-ui/core';
 import { List, Button } from '@material-ui/core';
-import styles from './main-css/Results.css';
+import styles from './Main-css/Results.css';
 import resultItem from './List-Item';
 import * as _ from 'lodash';
 
@@ -16,9 +16,9 @@ class Results extends Component {
   }
   
   render() {
-    const searchResults = this.props.results.concat(this.props.results).concat(this.props.results).concat(this.props.results).concat(this.props.results)
-    //const searchResults = this.props ? this.props.results : '';
-    console.log('results data: ', searchResults)
+    //const searchResults = this.props.results.concat(this.props.results).concat(this.props.results).concat(this.props.results).concat(this.props.results)
+    const searchResults = this.props ? this.props.results : '';
+    const finalResults = _.uniqBy(searchResults, 'id');
     return (
       <Grid container>
         <Grid item lg={12}>
@@ -31,8 +31,14 @@ class Results extends Component {
             </Typography>
             <List>
               {
-                searchResults.map((resultObj) => {
-                  return resultItem({resultObj})
+                finalResults.map((resultObj, i) => {
+                  const donorId = _.get(resultObj, 'values.custentity_cust_relateddonor[0].value');
+                  const memberId = _.get(resultObj, 'id');
+                  resultObj.key = i;
+                  if (memberId === donorId) {
+                    console.log(`search results ${i + 1}`, resultObj)
+                    return resultItem({resultObj})
+                  }
                 })
               }
             </List>

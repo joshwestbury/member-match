@@ -14,11 +14,11 @@ class Results extends Component {
   handleNotSure = () => {
     this.props.notSure();
   }
-
-  render() {
-    //const results = this.props.results.concat(this.props.results).concat(this.props.results).concat(this.props.results).concat(this.props.results)
   
-    console.log('results data: ', this.props.results)
+  render() {
+    const searchResults = this.props.results.concat(this.props.results).concat(this.props.results).concat(this.props.results).concat(this.props.results)
+    //const searchResults = this.props ? this.props.results : '';
+    console.log('results data: ', searchResults)
     return (
       <Grid container>
         <Grid item lg={12}>
@@ -31,7 +31,7 @@ class Results extends Component {
             </Typography>
             <List>
               {
-                this.props.results.map((resultObj, index) => {
+                searchResults.map((resultObj) => {
                   return resultItem({resultObj})
                 })
               }

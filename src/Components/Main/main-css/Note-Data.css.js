@@ -3,8 +3,7 @@ export default {
         display: 'flex'
       },
       Paper: {
-        height: 1200,
-        padding: 80,
+        flexGrow: 1,
         marginTop: 10,
         marginLeft: 10,
         marginBottom: 10,

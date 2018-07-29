@@ -22,22 +22,19 @@ class App extends Component {
   }
 
   componentWillMount = async () => {
-    await this.updateFirebaseData();
+    await this.getAddress();
+    await this.updatePartnerId();
     await this.getFirebaseData();
     await this.getNetsuiteData();
     console.log('this.state.results', this.state.results)
   }
   
   //get address from base and update parter with id
-  updateFirebaseData = async () => {
+  getAddress = async () => {
     const ref = db.ref();
     const query = ref.orderByChild('InternalId').equalTo("none");//change to "None" for production
-    await query.once('child_added', snap => {
-        const id = snap.val()['Contact ID'];
-        console.log('id': id)
-        const partnerBaseId = snap.val()['User ID'];
-        const partnerId = NetSuiteIdMap[partnerBaseId];
-        snap.ref.update({"partnerId": partnerId});
+    await query.once('child_added', async snap => {
+        const id = await snap.val()['Contact ID'];
         this.callBase(id)
           .then(address => {
             snap.ref.update({"Customer Address": address})
@@ -45,6 +42,21 @@ class App extends Component {
           .catch(err => console.log(err));
        })
   } 
+
+  updatePartnerId = async () => {
+    const ref = db.ref();
+    const query = ref.orderByChild('InternalId').equalTo("none");//change to "None" for production
+    query.once('child_added', async snap => {
+      const partnerBaseId = await snap.val()['User ID'];
+      console.log('partnerBaseId', partnerBaseId);
+      const partnerId = NetSuiteIdMap[partnerBaseId];
+      if (partnerId !== undefined){
+        snap.ref.update({"partnerId": partnerId});
+      } else {
+        return
+      }
+    });
+  }
   
   getFirebaseData = async () => {
     const ref = db.ref();
@@ -55,9 +67,8 @@ class App extends Component {
   }
 
   getNetsuiteData = async () => {
-    console.log(this.state.data);
     const searchResults = await this.callNetsuite(this.state.data);
-    this.setState({results: searchResults})
+    await this.setState({results: searchResults});
     console.log('search results: ', searchResults)
   }
 

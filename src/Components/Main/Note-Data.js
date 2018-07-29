@@ -7,7 +7,6 @@ class NoteData extends Component {
   
   render() {
     
-    
     const member = _.get(this.props.data, 'Contact Name', 'No Member Name');
     const partnerName = _.get(this.props.data, 'User who left the Note', "No Partner Name");
     const note = _.get(this.props.data, 'Note Content', 'No Note data');
@@ -15,10 +14,7 @@ class NoteData extends Component {
     const street = _.get(this.props.data, 'Customer Address.line1', '');
     const state = _.get(this.props.data, 'Customer Address.state', '');
     const zip = _.get(this.props.data, 'Customer Address.postal_code', '');
-   // const state = this.props.data["Customer Address"] ? this.props.data["Customer Address"].state : '';
-    //const zip = this.props.data["Customer Address"] ? this.props.data["Customer Address"].postal_code : '';
     
-
     return (
       <Grid container>
         <Grid item lg={12}>

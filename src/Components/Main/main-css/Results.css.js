@@ -1,7 +1,6 @@
 export default {
-
     Paper: {
-        height: 1200,
+        flexGrow: 1,
         padding: 60,
         marginTop: 10,
         marginLeft: 10,

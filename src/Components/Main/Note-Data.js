@@ -19,48 +19,51 @@ class NoteData extends Component {
       <Grid container>
         <Grid item lg={12}>
           <Paper elevation={7} style={styles.Paper}>
-           <Grid container>
-              <Grid item lg={4}>
+            <Grid container>
+              <Grid item lg={3}>
               </Grid>
-              <Grid item lg={4}>
-                  <TextField id="name"
-                    label="Customer Name / Business"
-                    style={styles.TextField}
-                    multiline
-                    rowsMax="50"
-                    value={`${member}`}
-                    margin="normal"
-                  />
-                  <TextField
-                    id="name"
-                    label="Customer Address"
-                    style={styles.TextField}
-                    multiline
-                    rowsMax="50"
-                    value={`${street},  ${city},  ${state},  ${zip}`}
-                    margin="normal"
-                  />
-                  <TextField
-                    id="name"
-                    label="Partner Name"
-                    style={styles.TextField}
-                    value={`${partnerName}`}
-                    margin="normal"
-                  />
-                  <TextField
-                    id="multiline-flexible"
-                    label="Note Content"
-                    multiline
-                    rowsMax="50"
-                    style={styles.TextField}
-                    value={`${note}`}
-                    margin="normal"
-                  />
+              <Grid item lg={6}>
+                <Card elevation={7} style={styles.Card}>
+                  <CardContent>
+                    <TextField id="name"
+                      label="Customer Name / Business"
+                      style={styles.TextField}
+                      multiline
+                      rowsMax="50"
+                      value={`${member}`}
+                      margin="normal"
+                    />
+                    <TextField
+                      id="name"
+                      label="Customer Address"
+                      style={styles.TextField}
+                      multiline
+                      rowsMax="50"
+                      value={`${street},  ${city},  ${state},  ${zip}`}
+                      margin="normal"
+                    />
+                    <TextField
+                      id="name"
+                      label="Partner Name"
+                      style={styles.TextField}
+                      value={`${partnerName}`}
+                      margin="normal"
+                    />
+                    <TextField
+                      id="multiline-flexible"
+                      label="Note Content"
+                      multiline
+                      rowsMax="50"
+                      style={styles.TextField}
+                      value={`${note}`}
+                      margin="normal"
+                    />                  
+                  </CardContent>  
+                </Card>
               </Grid> 
-              <Grid item lg={4}>
-              </Grid> 
-              </Grid>
-            
+                {/* <Grid item lg={2}>
+                </Grid>  */}
+            </Grid>
           </Paper>
         </Grid> 
       </Grid>

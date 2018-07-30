@@ -1,7 +1,4 @@
 export default {
-    Container: {
-        //display: 'flex'
-      },
       Paper: {
         flexGrow: 1,
         marginTop: 10,
@@ -14,6 +11,9 @@ export default {
         width: 300,
         marginTop: 60,
         marginBottom: 60                                                                             ,
-        
+      },
+      Card: {
+        marginTop: 50,
+        marginBottom: 80
       }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Paper, Typography } from '@material-ui/core';
-import { List, Button } from '@material-ui/core';
+import { List, Button, ListItem, ListItemText, ListSubheader } from '@material-ui/core';
 import styles from './Main-css/Results.css';
 import resultItem from './List-Item';
 import * as _ from 'lodash';
@@ -8,7 +8,7 @@ import * as _ from 'lodash';
 class Results extends Component {
 
   handleSave = () => {
-    //this.props.updateId();
+    this.props.updateId();
   }
 
   handleNotSure = () => {
@@ -54,8 +54,6 @@ class Results extends Component {
         </Grid>
       </Grid>
     )
-
-
   }
 }
 

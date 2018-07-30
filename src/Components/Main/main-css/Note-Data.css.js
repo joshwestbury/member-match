@@ -1,6 +1,6 @@
 export default {
     Container: {
-        display: 'flex'
+        //display: 'flex'
       },
       Paper: {
         flexGrow: 1,
@@ -10,14 +10,10 @@ export default {
         marginRight: 10,
       },
       TextField: {
+        flexGrow: 1,
         width: 300,
-        marginTop: 85,
-        marginLeft:  150,
-        marginBottom: 10,
-        marginRight: 150
-      },
-      Card: {
-        display: 'block',
-        paddingBottom: 40
-    }
+        marginTop: 60,
+        marginBottom: 60                                                                             ,
+        
+      }
 }

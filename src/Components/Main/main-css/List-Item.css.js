@@ -7,8 +7,8 @@ export default {
     TextField: {
         width: 300,
         marginTop: 10,
-        marginLeft:  10,
+        
         marginBottom: 10,
-        marginRight: 200
+        
     }
 }

@@ -19,9 +19,10 @@ class NoteData extends Component {
       <Grid container>
         <Grid item lg={12}>
           <Paper elevation={7} style={styles.Paper}>
-            <Card elevation={7} style={styles.Card}>
-              <CardContent>
-                <form>
+           <Grid container>
+              <Grid item lg={4}>
+              </Grid>
+              <Grid item lg={4}>
                   <TextField id="name"
                     label="Customer Name / Business"
                     style={styles.TextField}
@@ -37,7 +38,6 @@ class NoteData extends Component {
                     multiline
                     rowsMax="50"
                     value={`${street},  ${city},  ${state},  ${zip}`}
-                    // onChange={this.handleChange('name')}
                     margin="normal"
                   />
                   <TextField
@@ -45,7 +45,6 @@ class NoteData extends Component {
                     label="Partner Name"
                     style={styles.TextField}
                     value={`${partnerName}`}
-                    // onChange={}
                     margin="normal"
                   />
                   <TextField
@@ -55,14 +54,15 @@ class NoteData extends Component {
                     rowsMax="50"
                     style={styles.TextField}
                     value={`${note}`}
-                    //onChange={}
                     margin="normal"
                   />
-                </form>
-              </CardContent>
-            </Card>
+              </Grid> 
+              <Grid item lg={4}>
+              </Grid> 
+              </Grid>
+            
           </Paper>
-        </Grid>
+        </Grid> 
       </Grid>
     )
   }

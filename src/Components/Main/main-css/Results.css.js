@@ -9,9 +9,9 @@ export default {
         textAlign: 'center',
     },
     List: {
-        //height: 1200,
-        flexGrow: 1,
-        //width: 300,
+        height: 1200,
+        //flexGrow: 1,
+        width: 300,
         marginTop: 85,
         marginLeft: 10,
         marginBottom: 10,

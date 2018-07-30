@@ -27,6 +27,7 @@ class App extends Component {
     await this.getFirebaseData();
     await this.getNetsuiteData();
   }
+
   
   //get address from base and update parter with id
   getAddress = async () => {

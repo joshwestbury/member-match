@@ -89,8 +89,13 @@ class App extends Component {
     return body;
   }
 
-  updateId = () => {
-    console.log("update ID");
+  updateId = (memberId) => {
+    console.log('update member id', memberId);
+    const ref = db.ref();
+    const query = ref.orderByChild('InternalId').equalTo("none");//change to "None" for production
+    query.once('child_added', async snap => {
+      snap.ref.update({"InternalId": memberId})
+    })
   }
 
   notSure = () => {

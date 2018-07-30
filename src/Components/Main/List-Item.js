@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-import { TextField, List, Checkbox, CardActions, Grid } from '@material-ui/core';
+import { TextField, List, Checkbox, CardActions, Grid, ListSubheader, Button } from '@material-ui/core';
 import { CardContent, Card } from '@material-ui/core';
 import styles from './Main-css/List-Item.css';
 import * as _ from 'lodash';
 
-const state = {
-    selectedMember: [],
+export const member = {
+    selectedMember: {},
 }
 
 const checked  = true; //checked ? false : true;
 
-const handleCheckbox = resultObj => async () => {
-    state.selectedMember = resultObj
-    this.props.updateId();
+const handleCheckbox = resultObj => () => {
+    member.selectedMember = resultObj
+    //this.props.updateId();
     
-    //console.log('new state', state)
+    console.log('new state', member)
 }
 
 const handleToggle = resultObj => () => {
@@ -80,7 +80,7 @@ const resultItem = ({resultObj}) => {
                                 rowsMax="50"
                                 margin="normal"
                             />
-                        </List>
+                        </List> 
                     </Grid>
                     <Grid item lg={7}>
                     </Grid>
@@ -94,6 +94,7 @@ const resultItem = ({resultObj}) => {
                 />
             </CardActions>
         </Card>
+      
     )
 }
 export default resultItem;
@@ -101,9 +102,7 @@ export default resultItem;
 
 
 // class ResultItem extends Component {
-//     constructor ({resultObj}) {
-
-//     }
+//     
 
 //     render() {
 

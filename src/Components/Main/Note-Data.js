@@ -61,8 +61,6 @@ class NoteData extends Component {
                   </CardContent>  
                 </Card>
               </Grid> 
-                {/* <Grid item lg={2}>
-                </Grid>  */}
             </Grid>
           </Paper>
         </Grid> 

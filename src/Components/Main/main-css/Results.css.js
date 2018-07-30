@@ -23,7 +23,7 @@ export default {
         padding: 10,
         paddingLeft:  50,
         paddingRight: 50,
-        margin: 50,
+        margin: 30,
         backgroundColor: '#E91E63',
         size: 'medium'
     },
@@ -31,11 +31,11 @@ export default {
         padding: 10,
         paddingLeft: 30,
         paddingRight: 30,
-        margin: 50,
+        margin: 30,
         backgroundColor: '#2196F3'
     },
-    Card: {
-        marginTop: 20
+    ButtonCard: {
+        marginTop: 10,
     },
     CheckBox: {
         marginTop: 1

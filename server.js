@@ -3,9 +3,9 @@ const bodyParser = require('body-parser');
 const rp = require('request-promise');
 const headers = require('./headers')
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 7000;
 const app = express();
-//app.use(bodyParser.json());
+app.use(express.static('build'))
 
 const jsonParser = bodyParser.json()
 

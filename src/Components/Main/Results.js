@@ -47,13 +47,9 @@ class Results extends Component {
                     const donorId = _.get(resultObj, 'values.custentity_cust_relateddonor[0].value');
                     const memberId = _.get(resultObj, 'id');
                     resultObj.key = i;
-                    if (resultObj.values.lastname !== 'Name') {
-                      if (memberId === donorId) {
+                    if (memberId === donorId) {
                         return <ResultItem resultObj={resultObj} handleCheckbox={this.handleCheckbox} selectedIndex={this.state.selectedIndex} />
                       }
-                    } else {
-                      return <ResultItem resultObj={resultObj} handleCheckbox={this.handleCheckbox} selectedIndex={this.state.selectedIndex} />
-                    }
                   })
                 } 
               </List>

@@ -28,7 +28,7 @@
     "client": "yarn start",
     "dev": "concurrently --kill-others-on-fail"
   },
-  "proxy": "http://localhost:5000/",
+  "proxy": "http://localhost:7000/",
   "devDependencies": {
     "concurrently": "^3.6.0"
   }

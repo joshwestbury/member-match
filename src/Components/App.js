@@ -32,7 +32,7 @@ class App extends Component {
   //get address from base and update parter with id
   getAddress = async () => {
     const ref = db.ref();
-    const query = ref.orderByChild('InternalId').equalTo("none");//change to "None" for production
+    const query = ref.orderByChild('InternalId').equalTo("None");
     const snap = await query.once('child_added')
     const id = snap.val()['Contact ID'];
     const address = await this.callBase(id);
@@ -41,7 +41,7 @@ class App extends Component {
 
   updatePartnerId = async () => {
     const ref = db.ref();
-    const query = ref.orderByChild('InternalId').equalTo("none");//change to "None" for production
+    const query = ref.orderByChild('InternalId').equalTo("None");
     const snap = await query.once('child_added');
     const partnerBaseId = snap.val()['User ID'];
     const partnerId = NetSuiteIdMap[partnerBaseId];
@@ -54,7 +54,7 @@ class App extends Component {
   
   getFirebaseData = async () => {
     const ref = db.ref();
-    const query = ref.orderByChild('InternalId').equalTo("none").limitToFirst(1);//change to 'None' for production
+    const query = ref.orderByChild('InternalId').equalTo("None").limitToFirst(1);
     const snap = await query.once('child_added');
     console.log('name', snap.val()['Contact Name']);
     await this.setState({data: snap.val()});
@@ -90,7 +90,7 @@ class App extends Component {
   updateId = async (memberId) => {
     console.log('update member id', memberId);
     const ref = db.ref();
-    const query = ref.orderByChild('InternalId').equalTo("none");//change to "None" for production
+    const query = ref.orderByChild('InternalId').equalTo("None");
     const snap = await query.once('child_added');
     await snap.ref.update({"InternalId": memberId});
     window.location.reload();
@@ -98,9 +98,9 @@ class App extends Component {
 
   notSure = async () => {
     //set notSure field to true in firebase
-    const contact = this.state.data['Contact ID'];
+    const noteContent = this.state.data['Note Content'];
     const ref = db.ref();
-    const query = ref.orderByChild('Contact ID').equalTo(contact)
+    const query = ref.orderByChild('Note Content').equalTo(`${noteContent}`);
     const snap = await query.once('child_added');
     await snap.ref.update({"notSure": true, "InternalId": "0"});
     window.location.reload();

@@ -46,7 +46,7 @@ app.get('/api/contact/:id', async (req, res) => {
 
 app.post('/api/ns', jsonParser, async (req, res) => {
     let state = req.body;
-    console.log('state is: ', state);
+    //console.log('state is: ', state);
     try {
         const results = await searchNetsuite(state);
         console.log('netsuite results', results);

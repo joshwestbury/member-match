@@ -24,8 +24,8 @@ class App extends Component {
   componentWillMount = async () => {
     await this.getAddress();
     await this.updatePartnerId();
-    await this.getFirebaseData();
-    await this.getNetsuiteData();
+    const firebaseData = await this.getFirebaseData();
+    await this.getNetsuiteData(firebaseData);
   }
 
   
@@ -33,41 +33,39 @@ class App extends Component {
   getAddress = async () => {
     const ref = db.ref();
     const query = ref.orderByChild('InternalId').equalTo("none");//change to "None" for production
-    await query.once('child_added', async snap => {
-        const id = await snap.val()['Contact ID'];
-        this.callBase(id)
-          .then(address => {
-            snap.ref.update({"Customer Address": address})
-          })
-          .catch(err => console.log(err));
-       })
+    const snap = await query.once('child_added')
+    const id = snap.val()['Contact ID'];
+    const address = await this.callBase(id);
+    return snap.ref.update({"Customer Address": address});
   } 
 
   updatePartnerId = async () => {
     const ref = db.ref();
     const query = ref.orderByChild('InternalId').equalTo("none");//change to "None" for production
-    query.once('child_added', async snap => {
-      const partnerBaseId = await snap.val()['User ID'];
-      const partnerId = NetSuiteIdMap[partnerBaseId];
+    const snap = await query.once('child_added');
+    const partnerBaseId = snap.val()['User ID'];
+    const partnerId = NetSuiteIdMap[partnerBaseId];
       if (partnerId !== undefined){
-        snap.ref.update({"partnerId": partnerId});
+        return snap.ref.update({"partnerId": partnerId});
       } else {
         return
       }
-    });
   }
   
   getFirebaseData = async () => {
     const ref = db.ref();
-    const query = ref.orderByChild('InternalId').equalTo("none");//change to 'None' for production
-    await query.once('child_added', snap => {
-       this.setState({data: snap.val()});
-    })
+    const query = ref.orderByChild('InternalId').equalTo("none").limitToFirst(1);//change to 'None' for production
+    const snap = await query.once('child_added');
+    console.log('name', snap.val()['Contact Name']);
+    await this.setState({data: snap.val()});
+    console.log('state', this.state.data)
+    return snap.val();
   }
 
-  getNetsuiteData = async () => {
-    const searchResults = await this.callNetsuite(this.state.data);
-    await this.setState({results: searchResults});
+  getNetsuiteData = async (data) => {
+    const searchResults = await this.callNetsuite(data);
+    this.setState({results: searchResults});
+    return searchResults
   }
 
   callBase = async (id) => {
@@ -89,25 +87,24 @@ class App extends Component {
     return body;
   }
 
-  updateId = (memberId) => {
+  updateId = async (memberId) => {
     console.log('update member id', memberId);
     const ref = db.ref();
     const query = ref.orderByChild('InternalId').equalTo("none");//change to "None" for production
-    query.once('child_added', async snap => {
-      snap.ref.update({"InternalId": memberId})
-    })
+    const snap = await query.once('child_added');
+    await snap.ref.update({"InternalId": memberId});
+    window.location.reload();
   }
 
-  notSure = () => {
+  notSure = async () => {
     //set notSure field to true in firebase
     const contact = this.state.data['Contact ID'];
     const ref = db.ref();
     const query = ref.orderByChild('Contact ID').equalTo(contact)
-      query.once('child_added', snap => {
-        snap.ref.update({"notSure": true, "InternalId": false})
-     })
-    
-  };
+    const snap = await query.once('child_added');
+    await snap.ref.update({"notSure": true, "InternalId": "0"});
+    window.location.reload();
+  }
 
   render() {
     return <Fragment>

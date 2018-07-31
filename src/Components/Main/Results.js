@@ -1,16 +1,26 @@
 import React, { Component } from 'react';
 import { Grid, Paper, Typography } from '@material-ui/core';
-import { List, Button, ListItem, ListItemText, ListSubheader, Card, CardContent } from '@material-ui/core';
+import { List, Button, Card } from '@material-ui/core';
 import styles from './Main-css/Results.css';
-import resultItem from './List-Item';
+import ResultItem from './List-Item';
 import * as _ from 'lodash';
-import {member} from './List-Item';
  
 class Results extends Component {
+  state = {
+    selectedIndex: null,
+    selectedMemberId: null
+  }
 
-  handleSave = member => () => {
-    const memberId = member.selectedMember.id;
-    this.props.updateId(memberId);
+  handleCheckbox = (selectedIndex, memberId) => {
+    this.setState({selectedIndex: selectedIndex}, () => {
+      console.log('handle checkbox state', this.state);
+    });
+    this.setState({selectedMemberId: memberId});
+  }
+
+  handleSave = (selectedMemberId) => {
+    console.log(this.state.selectedMemberId);
+    this.props.updateId(this.state.selectedMemberId);
   }
 
   handleNotSure = () => {
@@ -37,28 +47,18 @@ class Results extends Component {
                     const donorId = _.get(resultObj, 'values.custentity_cust_relateddonor[0].value');
                     const memberId = _.get(resultObj, 'id');
                     resultObj.key = i;
-                    if (memberId === donorId) {
-                      console.log(`search results ${i + 1}`, resultObj)
-                      return resultItem({resultObj})
+                    if (resultObj.values.lastname !== 'Name') {
+                      if (memberId === donorId) {
+                        return <ResultItem resultObj={resultObj} handleCheckbox={this.handleCheckbox} selectedIndex={this.state.selectedIndex} />
+                      }
+                    } else {
+                      return <ResultItem resultObj={resultObj} handleCheckbox={this.handleCheckbox} selectedIndex={this.state.selectedIndex} />
                     }
                   })
-                }
-                
-                {/* <Card elevation={10} style={styles.ButtonCard}>
-                  <CardContent >
-                    <ListSubheader disableSticky={false}>
-                      {<Button style={styles.SaveButton}  variant="contained" color="primary"> Save </Button>}
-                      {<Button style={styles.IdkButton}  variant="contained" color="primary"> Not Sure </Button>}
-                    </ListSubheader>
-                  </CardContent>
-                  
-                </Card> */}
-               
+                } 
               </List>
-
-
             <Grid item lg={12}>
-              <Button onClick={this.handleSave(member)} style={styles.SaveButton} variant="contained" color="primary">
+              <Button onClick={() => this.handleSave(this.state.selectedMemberId)} style={styles.SaveButton} variant="contained" color="primary">
                 Save
               </Button>
               <Button onClick={this.handleNotSure} style={styles.IdkButton}  variant="contained" color="primary">

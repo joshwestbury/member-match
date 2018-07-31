@@ -1,27 +1,11 @@
-import React, { Component } from 'react';
-import { TextField, List, Checkbox, CardActions, Grid, ListSubheader, Button } from '@material-ui/core';
+import React from 'react';
+import { TextField, List, Checkbox, CardActions, Grid } from '@material-ui/core';
 import { CardContent, Card } from '@material-ui/core';
 import styles from './Main-css/List-Item.css';
 import * as _ from 'lodash';
 
-export const member = {
-    selectedMember: {},
-}
 
-const checked  = true; //checked ? false : true;
-
-const handleCheckbox = resultObj => () => {
-    member.selectedMember = resultObj
-    //this.props.updateId();
-    
-    console.log('new state', member)
-}
-
-const handleToggle = resultObj => () => {
-    
-}
-
-const resultItem = ({resultObj}) => {
+const ResultItem = ({resultObj, handleCheckbox, selectedIndex}) => {
 
     
     const firstName = _.get(resultObj, 'values.firstname');
@@ -31,9 +15,10 @@ const resultItem = ({resultObj}) => {
     const address = _.get(resultObj, 'values.address', 'No Address');
     const partner = _.get(resultObj, 'values.partner[0].text');
     const comments = _.get(resultObj, 'values.comments')
-
+    console.log(typeof selectedIndex, typeof resultObj.key)
+    console.log(selectedIndex);
     return (
-        <Card elevation={7} onClick={handleToggle(resultObj)} style={styles.Card} key={resultObj.key}> 
+        <Card elevation={7} onClick={() => handleCheckbox(resultObj.key, resultObj.id)} style={styles.Card} key={resultObj.key}> 
             <CardContent >
                 <Grid container>
                     <Grid item lg={1}>
@@ -88,21 +73,21 @@ const resultItem = ({resultObj}) => {
             </CardContent>
             <CardActions>
                 <Checkbox
-                    //checked={this.state.checked.indexOf(value) !== -1}
-                    //checked={checked}
-                    onClick={handleCheckbox(resultObj)}
+                    checked={selectedIndex === resultObj.key}
+                    
+                    onClick={() => handleCheckbox(resultObj.key, resultObj.id)}
                 />
             </CardActions>
         </Card>
       
     )
 }
-export default resultItem;
+export default ResultItem;
 
 
 
 // class ResultItem extends Component {
-//     
+    
 
 //     render() {
 
